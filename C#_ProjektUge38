@@ -17,17 +17,18 @@ namespace ProjektBackup
 
         static void QuizTime()
         {
-            int delay = 800;
+            int delay = 700;
             int charDelay = 19;
 
             string velkommen = "Velkommen til vores quiztime.";
-            string velkommen2 = "Du kan vælge mellem Matematik, Geografi eller Historie:";
+            string velkommen2 = "Du kan vælge mellem Matematik eller Geografi:";
 
             foreach(char c in velkommen)
             {
                 Console.Write(c);
                 Thread.Sleep(charDelay);
             }
+
             Console.WriteLine("");
             Thread.Sleep(delay);
             foreach(char c in velkommen2)
@@ -39,7 +40,7 @@ namespace ProjektBackup
             Console.WriteLine("");
             Console.WriteLine("1. Matematik");
             Console.WriteLine("2. Geografi");
-            Console.WriteLine("3. Historie");
+            //Console.WriteLine("3. Historie");
 
             string gameSelection = Console.ReadLine();
 
@@ -49,11 +50,113 @@ namespace ProjektBackup
                     //QuizTimeMatematik();
                     break;
                 case "2":
-                    //QuizTimeGeografi();
+                    QuizTimeGeografi();
                     break;
                 case "3":
                     //QuizTimeHistorie();
                     break;
+                default:
+                    QuizTime();
+                    break;
+            }
+
+            //Har tre sværhedsgrader: Nemt, middel og svært
+            //Viser tilfældige spørgsmål, som vises én gang med score
+            //Kan vindes hvis man svarer all rigtige, 5 forkerte svar taber man
+
+            //int score = 0; //Husk reset
+
+            void QuizTimeGeografi()
+            {
+                string velkommenGeo1 = "velkommen til geografiquizzen, du kan vælge mellem tre";
+                string velkommenGeo2 = "sværhedsgrader:";
+                Console.Clear();
+
+                foreach (char c in velkommenGeo1)
+                {
+                    Console.Write(c);
+                    Thread.Sleep(charDelay);
+                }
+
+                foreach (char c in velkommenGeo2)
+                {
+                    Console.Write(c);
+                    Thread.Sleep(charDelay);
+                }
+                Console.WriteLine("");
+
+                Console.WriteLine("1. Nemt");
+                Console.WriteLine("2. Middel");
+                Console.WriteLine("3. Svært");
+
+                string gameSelectionGeo = Console.ReadLine();
+
+                switch (gameSelectionGeo)
+                {
+                    case "1":
+                        QuizTimeGeoNem();
+                        break;
+                    case "2":
+                        //QuizTimeGeoMid();
+                    case "3":
+                    //QuizTimeGeoSvær();
+                    case "#":
+                        VisReglerGeo();
+                        break;
+                    default:
+                        QuizTime();
+                        break;
+                }
+            }
+
+            void VisReglerGeo()
+            {
+
+            }
+
+            int[] quizMemory = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            int score = 0;
+            int sporgsNum = 0;
+            int rNum = 0;
+
+            void QuizTimeGeoNem()
+            {
+                string[] sporgsGeoNem =
+                {
+                    "Hvad kaldes landet i sydpolen for?",
+                    "Hvad hedder Danmarks hovedstad?",
+                    "Hvad hedder det største hav i verden?"
+                };
+
+                string[] svarGeoNem =
+                {
+                    "Antarktis",
+                    "København",
+                    "Stillehavet"
+                };
+
+                Random rnd = new Random();
+                rNum = rnd.Next(0,3);
+
+                sporgsNum =+ 1;
+                string sporgsGeoNemNum = string.Format("Spørgsmål " + sporgsNum + ": " + sporgsGeoNem[rNum]);
+
+                Console.Clear();
+
+                foreach (char c in sporgsGeoNemNum)
+                {
+                    Console.Write(c);
+                    Thread.Sleep(charDelay);
+                }
+
+                Console.WriteLine("");
+                string geoSvaretNem = Console.ReadLine();
+
+                if(geoSvaretNem == svarGeoNem[rNum])
+                {
+
+                }
+
             }
 
         }
