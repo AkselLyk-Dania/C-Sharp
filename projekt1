@@ -1,0 +1,61 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace ProjektBackup
+{
+    internal class Program
+    {
+        static void Main(string[] args) 
+        {
+            QuizTime();
+        }
+
+        static void QuizTime()
+        {
+            int delay = 800;
+            int charDelay = 19;
+
+            string velkommen = "Velkommen til vores quiztime.";
+            string velkommen2 = "Du kan vælge mellem Matematik, Geografi eller Historie:";
+
+            foreach(char c in velkommen)
+            {
+                Console.Write(c);
+                Thread.Sleep(charDelay);
+            }
+            Console.WriteLine("");
+            Thread.Sleep(delay);
+            foreach(char c in velkommen2)
+            {
+                Console.Write(c);
+                Thread.Sleep(charDelay);
+            }
+
+            Console.WriteLine("");
+            Console.WriteLine("1. Matematik");
+            Console.WriteLine("2. Geografi");
+            Console.WriteLine("3. Historie");
+
+            string gameSelection = Console.ReadLine();
+
+            switch (gameSelection)
+            {
+                case "1":
+                    //QuizTimeMatematik();
+                    break;
+                case "2":
+                    //QuizTimeGeografi();
+                    break;
+                case "3":
+                    //QuizTimeHistorie();
+                    break;
+            }
+
+        }
+    }
+}
