@@ -70,7 +70,7 @@ namespace ProjektBackup
             switch (gameSelection)
             {
                 case "1": //Hvis 1 er skrevet gå til matematik osv.
-                    //QuizTimeMatematik();
+                    QuizTimeMatematik();
                     break;
                 case "2":
                     QuizTimeGeografi();
@@ -82,16 +82,30 @@ namespace ProjektBackup
                     QuizTime();
                     break;
             }
+               
+            // Abudi´s program sarter her: Hovdreging spil 
 
-            /////////////////////////
-            ////////Geografi/////////
-            /////////////////////////
 
-            //Har tre sværhedsgrader: Nemt, middel og svært
-            //Viser tilfældige spørgsmål, som vises én gang med score
-            //Kan vindes hvis man svarer all rigtige, ét forket svar taber man
+            void QuizTimeMatematik()
+            {
+                Console.WriteLine("Hej! Velkommen til Hovedregning spilet.");
+                Console.Write("Skriv dit navn: ");
+                string navn = Console.ReadLine();
+                Console.WriteLine($"Godt at møde dig, {navn}!");
 
-            void QuizTimeGeografi()
+                Console.WriteLine("Tryk en Enter for at fortsætte...");
+                Console.ReadKey(true);
+            }
+
+/////////////////////////
+////////Geografi/////////
+/////////////////////////
+
+//Har tre sværhedsgrader: Nemt, middel og svært
+//Viser tilfældige spørgsmål, som vises én gang med score
+//Kan vindes hvis man svarer all rigtige, ét forket svar taber man
+
+void QuizTimeGeografi()
             {
                 //Hard reset (alle variabler er sat til deres nul værdier)
                 Globals.quizMemory = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
