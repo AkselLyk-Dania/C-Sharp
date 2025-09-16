@@ -98,8 +98,8 @@ namespace ProjektBackup
             }
 
 /////////////////////////
-////////Geografi/////////
-/////////////////////////
+////////Geografi///////// //Semi text-adventure uden grafiske visninger men med sværhedsgrader,
+///////////////////////// //points or tilfældige spørgsmål
 
 //Har tre sværhedsgrader: Nemt, middel og svært
 //Viser tilfældige spørgsmål, som vises én gang med score
