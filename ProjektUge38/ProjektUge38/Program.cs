@@ -30,7 +30,7 @@ namespace ProjektBackup
             //Reserveret for tilfældigt nummer
             public static int rNum = 0;
             //Maks lavet spørgsmål, skal incrementers hvis flere er lavet
-            public const int geoNum = 3;
+            public const int geoNum = 10;
         }
 
         static void QuizTime()
@@ -232,13 +232,14 @@ namespace ProjektBackup
                     "Hvad kaldes landet i sydpolen for?",
                     "Hvad hedder Danmarks hovedstad?",
                     "Hvad hedder det største hav i verden?",
+                    "Hvad hedder Jyllands nordligste by?",
+                    "I Hvilken by ligger Danmarks højeste hus?",
+                    "Hvad hedder Danmarks største ø?",
                     "Hvad hedder det store havområde imellem Nord og Sydamerika?", //Amerikanske golf, Mexikanske golf, Atlanterhavet
                     "Hvor høj er himmelbjerget i meter?",//Nævn tre eksempler 147 162 173
-                    "Hvilket lan ligger Vancouver i?", //Canada, USA, Grønland
-                    "Hvor mange indbyggere er det i USA?", //315 340 340
-                    "Hvad hedder Jyllands nordligste by?",
+                    "Hvilket land ligger Vancouver i?", //Canada, USA, Grønland
+                    "Hvor mange indbyggere er der i USA i millioner?", //315 340 340
                     "Hvad hedder Danmarks længste flod/vandløb?", //Gudenåen, Limfjorden, /Storå
-                    "Hvilken by ligger Danmarks højeste hus?"
                 };
 
                 string[] svarGeoNem =
@@ -246,13 +247,14 @@ namespace ProjektBackup
                     "antarktis",
                     "københavn",
                     "stillehavet",
-                    "Den Mexikanske Golf",
+                    "skagen",
+                    "aarhus",
+                    "grønland",
+                    "den mexikanske golf",
                     "147",
-                    "Canada",
+                    "canada",
                     "340",
-                    "Skagen",
-                    "Gudenåen",
-                    "Aarhus"
+                    "gudenåen",
                 };
 
                 string korrekt = "Korrekt! Din score er: ";
@@ -261,16 +263,20 @@ namespace ProjektBackup
                 //Bruges til at lave et tilfældigt nummer
                 Random rnd = new Random();
                 //Next bruges til at komme med et tilfældigt nummber fra min til maks
-                Globals.rNum = rnd.Next(0, Globals.geoNum);
+                Globals.rNum = rnd.Next(0, Globals.geoNum+1);
 
                 if (Globals.sporgsNum > 0) //Køres kun hvis man har svaret rigtigt én gang
                 {
-                    for (int i = 0; i < 10; i++)
+                    for (int i = 0; i < Globals.geoNum; i++)
                     {
                         //quizMemory array bruges til at genkende allerede svaret spørgsmål, som er lavet tilfældigt
                         //Hvis de er identiske... genstarter quizzen og prøver indtil der er et ledigt tal
                         if (Globals.rNum == Globals.quizMemory[i]) //...men er det lovligt!?
                         {
+                            //Console.WriteLine(Globals.rNum.ToString());
+                            //Console.WriteLine(Globals.quizMemory[i].ToString());
+                            //Console.WriteLine(Globals.sporgsNum.ToString());
+                            //Console.WriteLine(Globals.quizMemory[1].ToString() + Globals.quizMemory[2].ToString() + Globals.quizMemory[3].ToString() + Globals.quizMemory[4].ToString() + Globals.quizMemory[5].ToString() + Globals.quizMemory[6].ToString() + Globals.quizMemory[7].ToString() + Globals.quizMemory[8].ToString() + Globals.quizMemory[9].ToString() + Globals.quizMemory[10].ToString());
                             Thread.Sleep(1); //Ét milllisekund for delay for hvert gang den skifter
                             QuizTimeGeoNem();
                         }
@@ -295,7 +301,7 @@ namespace ProjektBackup
                 {
                     Globals.score++;
                     Globals.sporgsNum++;
-                    Globals.quizMemory[Globals.sporgsNum] = Globals.rNum;
+                    if(Globals.sporgsNum < 9) Globals.quizMemory[Globals.sporgsNum] = Globals.rNum;
                     string korrektSvar = string.Format(korrekt + Globals.score);
 
                     foreach (char c in korrektSvar)
