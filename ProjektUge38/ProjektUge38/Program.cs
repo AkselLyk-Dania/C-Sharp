@@ -113,6 +113,12 @@ namespace ProjektBackup
                 }
             }
 
+<<<<<<< HEAD
+=======
+/////////////////////////
+////////Geografi///////// //Semi text-adventure uden grafiske visninger men med sværhedsgrader,
+///////////////////////// //points or tilfældige spørgsmål
+>>>>>>> e5cc69e625c737a90945481bd3ee0a4b7514f5a0
 
 
             /////////////////////////
