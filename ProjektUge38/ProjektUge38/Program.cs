@@ -82,30 +82,48 @@ namespace ProjektBackup
                     QuizTime();
                     break;
             }
-               
-            // Abudi´s program sarter her: Hovdreging spil 
 
-
+            // Abudi´s program/Spil starter her: Hovedregning spil
             void QuizTimeMatematik()
             {
-                Console.WriteLine("Hej! Velkommen til Hovedregning spilet.");
+                Console.WriteLine("Hej! Velkommen til Hovedregning spillet.");
                 Console.Write("Skriv dit navn: ");
                 string navn = Console.ReadLine();
                 Console.WriteLine($"Godt at møde dig, {navn}!");
 
-                Console.WriteLine("Tryk en Enter for at fortsætte...");
+                Console.WriteLine("Tryk Space for at fortsætte...");
                 Console.ReadKey(true);
+
+                int liv = 3;
+                int point = 0;
+                Random rnd = new Random();
+
+                while (liv > 0)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine($"Liv: {liv} | Point: {point}");
+
+                    int tal1 = rnd.Next(1, 100);
+                    int tal2 = rnd.Next(1, 100);
+
+                    int korrektSvar = tal1 + tal2;
+                    Console.WriteLine($"Hvad er {tal1} + {tal2}?");
+
+                    string input = Console.ReadLine();
+                }
             }
 
-/////////////////////////
-////////Geografi/////////
-/////////////////////////
 
-//Har tre sværhedsgrader: Nemt, middel og svært
-//Viser tilfældige spørgsmål, som vises én gang med score
-//Kan vindes hvis man svarer all rigtige, ét forket svar taber man
 
-void QuizTimeGeografi()
+            /////////////////////////
+            ////////Geografi/////////
+            /////////////////////////
+
+            //Har tre sværhedsgrader: Nemt, middel og svært
+            //Viser tilfældige spørgsmål, som vises én gang med score
+            //Kan vindes hvis man svarer all rigtige, ét forket svar taber man
+
+            void QuizTimeGeografi()
             {
                 //Hard reset (alle variabler er sat til deres nul værdier)
                 Globals.quizMemory = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
