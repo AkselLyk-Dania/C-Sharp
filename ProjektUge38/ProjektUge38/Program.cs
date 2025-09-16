@@ -118,16 +118,10 @@ namespace ProjektBackup
 /////////////////////////
 ////////Geografi///////// //Semi text-adventure uden grafiske visninger men med sværhedsgrader,
 ///////////////////////// //points or tilfældige spørgsmål
->>>>>>> e5cc69e625c737a90945481bd3ee0a4b7514f5a0
 
-
-            /////////////////////////
-            ////////Geografi/////////
-            /////////////////////////
-
-            //Har tre sværhedsgrader: Nemt, middel og svært
-            //Viser tilfældige spørgsmål, som vises én gang med score
-            //Kan vindes hvis man svarer all rigtige, ét forket svar taber man
+//Har tre sværhedsgrader: Nemt, middel og svært
+//Viser tilfældige spørgsmål, som vises én gang med score når man svarer rigtigt
+//Kan vindes hvis man svarer all rigtige, ét forket svar taber man
 
             void QuizTimeGeografi()
             {
@@ -158,6 +152,7 @@ namespace ProjektBackup
                 Console.WriteLine("1. Nemt");
                 Console.WriteLine("2. Middel");
                 Console.WriteLine("3. Svært");
+                Console.WriteLine("#. Vis regler");
 
                 string gameSelectionGeo = Console.ReadLine();
 
@@ -181,7 +176,39 @@ namespace ProjektBackup
 
             void VisReglerGeo()
             {
+                string regel1 = "1. Hvert spil giver dig 10 spørgsmål, hvor du skal svare med navn og stavelse";
+                string regel2 = "2. Du vinder hvis du svarer alle spørgsmål, men taber hvis du svarer forkert én gang";
+                string regel3 = "3. Spørgsmålene er opstillet med en tilfældig rækkefølge";
+                string regel4 = "Tryk på en tast for at gå tilbage...";
 
+                Console.Clear();
+
+                foreach (char c in regel1)
+                {
+                    Console.Write(c);
+                    Thread.Sleep(charDelay);
+                }
+                Console.WriteLine("");
+                foreach (char c in regel2)
+                {
+                    Console.Write(c);
+                    Thread.Sleep(charDelay);
+                }
+                Console.WriteLine("");
+                foreach (char c in regel3)
+                {
+                    Console.Write(c);
+                    Thread.Sleep(charDelay);
+                }
+                Console.WriteLine("");
+                Console.WriteLine("");
+                foreach (char c in regel4)
+                {
+                    Console.Write(c);
+                    Thread.Sleep(charDelay);
+                }
+                Console.ReadKey(true);
+                QuizTimeGeografi();
             }
 
             void QuizTimeGeoNem()
@@ -189,7 +216,7 @@ namespace ProjektBackup
                 //Hvis svaret spørgsmål er det samme, som maks har du vundet
                 if (Globals.sporgsNum == Globals.geoNum)
                 {
-                    string geoNemTillykke = "Tillykke! Du har vundet quizzen med top score!";
+                    string geoNemTillykke = "Tillykke! Du har vundet quizzen med top score, som er " + Globals.geoNum + "!";
                     foreach (char c in geoNemTillykke)
                     {
                         Console.Write(c);
@@ -206,14 +233,28 @@ namespace ProjektBackup
                 {
                     "Hvad kaldes landet i sydpolen for?",
                     "Hvad hedder Danmarks hovedstad?",
-                    "Hvad hedder det største hav i verden?"
+                    "Hvad hedder det største hav i verden?",
+                    "Hvad hedder det store havområde imellem Nord og Sydamerika?", //Amerikanske golf, Mexikanske golf, Atlanterhavet
+                    "Hvor høj er himmelbjerget i meter?",//Nævn tre eksempler 147 162 173
+                    "Hvilket lan ligger Vancouver i?", //Canada, USA, Grønland
+                    "Hvor mange indbyggere er det i USA?", //315 340 340
+                    "Hvad hedder Jyllands nordligste by?",
+                    "Hvad hedder Danmarks længste flod/vandløb?", //Gudenåen, Limfjorden, /Storå
+                    "Hvilken by ligger Danmarks højeste hus?"
                 };
 
                 string[] svarGeoNem =
                 {
-                    "Antarktis",
-                    "København",
-                    "Stillehavet"
+                    "antarktis",
+                    "københavn",
+                    "stillehavet",
+                    "Den Mexikanske Golf",
+                    "147",
+                    "Canada",
+                    "340",
+                    "Skagen",
+                    "Gudenåen",
+                    "Aarhus"
                 };
 
                 string korrekt = "Korrekt! Din score er: ";
@@ -249,6 +290,8 @@ namespace ProjektBackup
 
                 Console.WriteLine("");
                 string geoSvaretNem = Console.ReadLine();
+
+                geoSvaretNem = geoSvaretNem.ToLower();
 
                 if (geoSvaretNem == svarGeoNem[Globals.rNum])
                 {
