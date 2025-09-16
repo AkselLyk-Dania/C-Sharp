@@ -7,8 +7,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-//Test
-
 namespace ProjektBackup
 {
     internal class Program
@@ -113,8 +111,8 @@ namespace ProjektBackup
                 }
             }
 
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
 /////////////////////////
 ////////Geografi///////// //Semi text-adventure uden grafiske visninger men med sværhedsgrader,
 ///////////////////////// //points or tilfældige spørgsmål
