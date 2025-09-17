@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
@@ -113,7 +114,8 @@ namespace ProjektBackup
 
 //<<<<<<< HEAD
 //=======
-/////////////////////////
+
+///////////////////////// //Programmeret af Aksel lykkegaard
 ////////Geografi///////// //Semi text-adventure uden grafiske visninger men med sværhedsgrader,
 ///////////////////////// //points or tilfældige spørgsmål
 
@@ -235,11 +237,21 @@ namespace ProjektBackup
                     "Hvad hedder Jyllands nordligste by?",
                     "I Hvilken by ligger Danmarks højeste hus?",
                     "Hvad hedder Danmarks største ø?",
+
                     "Hvad hedder det store havområde imellem Nord og Sydamerika?", //Amerikanske golf, Mexikanske golf, Atlanterhavet
                     "Hvor høj er himmelbjerget i meter?",//Nævn tre eksempler 147 162 173
                     "Hvilket land ligger Vancouver i?", //Canada, USA, Grønland
-                    "Hvor mange indbyggere er der i USA i millioner?", //315 340 340
+                    "Hvor mange indbyggere er der i USA i millioner?", //315 340 356
                     "Hvad hedder Danmarks længste flod/vandløb?", //Gudenåen, Limfjorden, /Storå
+                };
+
+                string[,] eksGeoNem =
+                {
+                    {"1. Den Amerikanske Golf","2. Den Mexikanske Golf","3. Atlanterhavet"},
+                    {"1. 147","2. 162","3. 173"},
+                    {"1. Canada","2. USA","3. Grønland"},
+                    {"1. 315","2. 340","3. 372"},
+                    {"1. Gudenåen","2. Limfjorden","3. Storå"}
                 };
 
                 string[] svarGeoNem =
@@ -250,7 +262,8 @@ namespace ProjektBackup
                     "skagen",
                     "aarhus",
                     "grønland",
-                    "den mexikanske golf",
+
+                    "den mexikanske golf", //6
                     "147",
                     "canada",
                     "340",
@@ -260,10 +273,7 @@ namespace ProjektBackup
                 string korrekt = "Korrekt! Din score er: ";
                 string forkert1 = "Forkert! Bedre held næste gang!";
 
-                //Bruges til at lave et tilfældigt nummer
-                Random rnd = new Random();
-                //Next bruges til at komme med et tilfældigt nummber fra min til maks
-                Globals.rNum = rnd.Next(0, Globals.geoNum+1);
+                Globals.rNum = RandomNum(0, Globals.geoNum + 1); //se funktionen længere nede
 
                 if (Globals.sporgsNum > 0) //Køres kun hvis man har svaret rigtigt én gang
                 {
@@ -273,11 +283,13 @@ namespace ProjektBackup
                         //Hvis de er identiske... genstarter quizzen og prøver indtil der er et ledigt tal
                         if (Globals.rNum == Globals.quizMemory[i]) //...men er det lovligt!?
                         {
+                            //Test funktioner
                             //Console.WriteLine(Globals.rNum.ToString());
                             //Console.WriteLine(Globals.quizMemory[i].ToString());
                             //Console.WriteLine(Globals.sporgsNum.ToString());
                             //Console.WriteLine(Globals.quizMemory[1].ToString() + Globals.quizMemory[2].ToString() + Globals.quizMemory[3].ToString() + Globals.quizMemory[4].ToString() + Globals.quizMemory[5].ToString() + Globals.quizMemory[6].ToString() + Globals.quizMemory[7].ToString() + Globals.quizMemory[8].ToString() + Globals.quizMemory[9].ToString() + Globals.quizMemory[10].ToString());
-                            Thread.Sleep(1); //Ét milllisekund for delay for hvert gang den skifter
+
+                            Thread.Sleep(1); //Ét milllisekund delay for hvert gang den skifter
                             QuizTimeGeoNem();
                         }
                     }
@@ -292,7 +304,30 @@ namespace ProjektBackup
                     Thread.Sleep(charDelay);
                 }
 
+                if(Globals.rNum == 6 || Globals.rNum == 7 || Globals.rNum == 8 || Globals.rNum == 9 || Globals.rNum == 10)
+                {
+                    Console.WriteLine("");
+                    foreach ( char c in eksGeoNem[Globals.rNum-6,0] )
+                    {
+                        Console.Write(c);
+                        Thread.Sleep(charDelay);
+                    }
+                    Console.WriteLine("");
+                    foreach (char c in eksGeoNem[Globals.rNum-6, 1])
+                    {
+                        Console.Write(c);
+                        Thread.Sleep(charDelay);
+                    }
+                    Console.WriteLine("");
+                    foreach (char c in eksGeoNem[Globals.rNum-6, 2])
+                    {
+                        Console.Write(c);
+                        Thread.Sleep(charDelay);
+                    }
+                }
+
                 Console.WriteLine("");
+                Console.Write("Svar: ");
                 string geoSvaretNem = Console.ReadLine();
 
                 geoSvaretNem = geoSvaretNem.ToLower();
@@ -335,7 +370,17 @@ namespace ProjektBackup
                 Console.Clear();
                 QuizTimeGeoNem();
             }
+            
 
+        }
+
+        // Returns et tilfældigt nummmer imellem min og max
+        static int RandomNum(int min, int max)
+        {
+            //Bruges til at lave et tilfældigt nummer
+            Random rnd = new Random();
+            //Next bruges til at komme med et tilfældigt nummber fra min til maks
+            return rnd.Next(min,max);
         }
     }
 }
