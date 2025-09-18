@@ -85,17 +85,17 @@ namespace ProjektBackup
             // Abudi´s program/Spil starter her: Hovedregning spil
             void QuizTimeMatematik()
             {
-                Console.WriteLine("Hej! Velkommen til Hovedregning spillet.");
+                Console.WriteLine("Hej! Velkommen til Hovedregning spillet."); //Introduktion
                 Console.Write("Skriv dit navn: ");
                 string navn = Console.ReadLine();
                 Console.WriteLine($"Godt at møde dig, {navn}!");
 
-                Console.WriteLine("Tryk Space for at fortsætte...");
+                Console.WriteLine("Tryk Space for at fortsætte..."); 
                 Console.ReadKey(true);
 
-                int liv = 3;
-                int point = 0;
-                Random rnd = new Random();
+                int liv = 3; 
+                int point = 0;  
+                Random rnd = new Random(); //Maskien vælger tilfældige tal
 
                 while (liv > 0)
                 {
@@ -109,6 +109,40 @@ namespace ProjektBackup
                     Console.WriteLine($"Hvad er {tal1} + {tal2}?");
 
                     string input = Console.ReadLine();
+                    {
+                        if (int.TryParse(input, out int brugerSvar)) 
+                        {
+                            if (brugerSvar == korrektSvar)
+                            {
+                                point++;
+                                Console.WriteLine("Korrekt :) Du får et point.");
+                            }
+                            else
+                            {
+                                liv--;
+                                Console.WriteLine($"Forkert :(  Det rigtige svar var {korrektSvar}. Du mister et liv.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ugyldigt input. Prøv igen.");
+                            Console.Writeline("Du fik {point} point.");
+
+                            if (!SpilIgen()) break;   // hvis nej, forlad funktionen og gå tilbage
+                            Console.Clear();          // ellers start forfra i ydre loop
+                        }
+
+                        //Funktion, som hjølper om genstart
+                        bool SpilIgen()
+                        {
+                            Console.Write("\nVil du genstarte spillet? (j/n): ");
+                            var t = Console.ReadKey(true).KeyChar;
+                            return t == 'j' || t == 'J';
+                        }
+
+
+                    }
+                    
                 }
             }
 
