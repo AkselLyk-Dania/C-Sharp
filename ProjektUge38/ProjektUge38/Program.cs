@@ -20,7 +20,7 @@ namespace ProjektBackup
         //Den eneste måde jeg kunne lave globale variabler på, så de kan bruges all steder
         public static class Globals
         {
-            //Array for hukommelse for sprøgsmål der allerede er svaret (maks 10)
+            //Array for hukommelse for sprøgsmål der allerede er svaret
             public static int[] quizMemory = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
             //Points
             public static int score = 0;
@@ -30,7 +30,7 @@ namespace ProjektBackup
             public static int forkert = 0;
             //Reserveret for tilfældigt nummer
             public static int rNum = 0;
-            //Maks lavet spørgsmål, skal incrementers hvis flere er lavet
+            //Maks stillet spørgsmål, skal incrementers hvis flere skal vises
             public const int geoNum = 10;
         }
 
@@ -90,11 +90,11 @@ namespace ProjektBackup
                 string navn = Console.ReadLine();
                 Console.WriteLine($"Godt at møde dig, {navn}!");
 
-                Console.WriteLine("Tryk Space for at fortsætte..."); 
+                Console.WriteLine("Tryk Space for at fortsætte...");
                 Console.ReadKey(true);
 
-                int liv = 3; 
-                int point = 0;  
+                int liv = 3;
+                int point = 0;
                 Random rnd = new Random(); //Maskien vælger tilfældige tal
 
                 while (liv > 0)
@@ -110,7 +110,7 @@ namespace ProjektBackup
 
                     string input = Console.ReadLine();
                     {
-                        if (int.TryParse(input, out int brugerSvar)) 
+                        if (int.TryParse(input, out int brugerSvar))
                         {
                             if (brugerSvar == korrektSvar)
                             {
@@ -126,7 +126,7 @@ namespace ProjektBackup
                         else
                         {
                             Console.WriteLine("Ugyldigt input. Prøv igen.");
-                            Console.Writeline("Du fik {point} point.");
+                            Console.WriteLine("Du fik {point} point.");
 
                             if (!SpilIgen()) break;   // hvis nej, forlad funktionen og gå tilbage
                             Console.Clear();          // ellers start forfra i ydre loop
@@ -142,20 +142,20 @@ namespace ProjektBackup
 
 
                     }
-                    
+
                 }
             }
 
-//<<<<<<< HEAD
-//=======
+            //<<<<<<< HEAD
+            //=======
 
-///////////////////////// //Programmeret af Aksel lykkegaard
-////////Geografi///////// //Semi text-adventure uden grafiske visninger men med sværhedsgrader,
-///////////////////////// //points or tilfældige spørgsmål
+            ///////////////////////// //Programmeret af Aksel lykkegaard
+            ////////Geografi///////// //Semi text-adventure uden grafiske visninger men med sværhedsgrader,
+            ///////////////////////// //points or tilfældige spørgsmål
 
-//Har tre sværhedsgrader: Nemt, middel og svært
-//Viser tilfældige spørgsmål, som vises én gang med score når man svarer rigtigt
-//Kan vindes hvis man svarer all rigtige, ét forket svar taber man
+            //Har tre sværhedsgrader: Nemt, middel og svært
+            //Viser tilfældige spørgsmål, som vises én gang med score når man svarer rigtigt
+            //Kan vindes hvis man svarer all rigtige, ét forket svar taber man
 
             void QuizTimeGeografi()
             {
@@ -193,12 +193,14 @@ namespace ProjektBackup
                 switch (gameSelectionGeo)
                 {
                     case "1":
-                        QuizTimeGeoNem();
+                        QuizTimeGeo(0);
                         break;
                     case "2":
-                    //QuizTimeGeoMid();
+                        QuizTimeGeo(1);
+                        break;
                     case "3":
-                    //QuizTimeGeoSvær();
+                        QuizTimeGeo(2);
+                        break;
                     case "#":
                         VisReglerGeo();
                         break;
@@ -245,7 +247,7 @@ namespace ProjektBackup
                 QuizTimeGeografi();
             }
 
-            void QuizTimeGeoNem()
+            void QuizTimeGeo(int grad)
             {
                 //Hvis svaret spørgsmål er det samme, som maks har du vundet
                 if (Globals.sporgsNum == Globals.geoNum)
@@ -259,49 +261,125 @@ namespace ProjektBackup
                     Thread.Sleep(delay * 5);
                     Console.Clear();
                     QuizTime(); //Programmet genstartes
-                    //System.Environment.Exit(0); //return; Er det nødvendigt?!?!?!?
+                    //System.Environment.Exit(0);
                 }
 
                 //Begge skal være identiske for at still de samme spørgsmål og tjekke kravet
-                string[] sporgsGeoNem =
+                string[,] sporgsGeo =
                 {
-                    "Hvad kaldes landet i sydpolen for?",
-                    "Hvad hedder Danmarks hovedstad?",
-                    "Hvad hedder det største hav i verden?",
-                    "Hvad hedder Jyllands nordligste by?",
-                    "I Hvilken by ligger Danmarks højeste hus?",
-                    "Hvad hedder Danmarks største ø?",
+                    {
+                        "Hvad kaldes landet i sydpolen for?",
+                        "Hvad hedder Danmarks hovedstad?",
+                        "Hvad hedder det største hav i verden?",
+                        "Hvad hedder Jyllands nordligste by?",
+                        "I Hvilken by ligger Danmarks højeste hus?",
+                        "Hvad hedder Danmarks største ø?",
 
-                    "Hvad hedder det store havområde imellem Nord og Sydamerika?", //Amerikanske golf, Mexikanske golf, Atlanterhavet
-                    "Hvor høj er himmelbjerget i meter?",//Nævn tre eksempler 147 162 173
-                    "Hvilket land ligger Vancouver i?", //Canada, USA, Grønland
-                    "Hvor mange indbyggere er der i USA i millioner?", //315 340 356
-                    "Hvad hedder Danmarks længste flod/vandløb?", //Gudenåen, Limfjorden, /Storå
+                        "Hvad hedder det store havområde imellem Nord og Sydamerika?", //Amerikanske golf, Mexikanske golf, Atlanterhavet
+                        "Hvor høj er himmelbjerget i meter?",//Nævn tre eksempler 147 162 173
+                        "Hvilket land ligger Vancouver i?", //Canada, USA, Grønland
+                        "Hvor mange indbyggere er der i USA i millioner?", //315 340 356
+                        "Hvad hedder Danmarks længste flod/vandløb?", //Gudenåen, Limfjorden, /Storå
+                    },
+                    {
+                        "test1",
+                        "test1",
+                        "test1",
+                        "test1",
+                        "test1",
+                        "test1",
+
+                        "test1",
+                        "test1",
+                        "test1",
+                        "test1",
+                        "test1"
+                    },
+                    {
+                        "test2",
+                        "test2",
+                        "test2",
+                        "test2",
+                        "test2",
+                        "test2",
+
+                        "test2",
+                        "test2",
+                        "test2",
+                        "test2",
+                        "test2"
+                    }
                 };
 
-                string[,] eksGeoNem =
+                string[,,] eksGeo =
                 {
-                    {"1. Den Amerikanske Golf","2. Den Mexikanske Golf","3. Atlanterhavet"},
-                    {"1. 147","2. 162","3. 173"},
-                    {"1. Canada","2. USA","3. Grønland"},
-                    {"1. 315","2. 340","3. 372"},
-                    {"1. Gudenåen","2. Limfjorden","3. Storå"}
+                    {
+                        {"1. Den Amerikanske Golf","2. Den Mexikanske Golf","3. Atlanterhavet"},
+                        {"1. 147","2. 162","3. 173"},
+                        {"1. Canada","2. USA","3. Grønland"},
+                        {"1. 315","2. 340","3. 372"},
+                        {"1. Gudenåen","2. Limfjorden","3. Storå"}
+                    },
+                    {
+                        {"1. Den Amerikanske Golf","2. Den Mexikanske Golf","3. Atlanterhavet"},
+                        {"1. 147","2. 162","3. 173"},
+                        {"1. Canada","2. USA","3. Grønland"},
+                        {"1. 315","2. 340","3. 372"},
+                        {"1. Gudenåen","2. Limfjorden","3. Storå"},
+                    },
+                    {
+                        {"1. Den Amerikanske Golf","2. Den Mexikanske Golf","3. Atlanterhavet"},
+                        {"1. 147","2. 162","3. 173"},
+                        {"1. Canada","2. USA","3. Grønland"},
+                        {"1. 315","2. 340","3. 372"},
+                        {"1. Gudenåen","2. Limfjorden","3. Storå"},
+                    }
                 };
 
-                string[] svarGeoNem =
+                string[,] svarGeo =
                 {
-                    "antarktis",
-                    "københavn",
-                    "stillehavet",
-                    "skagen",
-                    "aarhus",
-                    "grønland",
+                    {
+                        "antarktis",
+                        "københavn",
+                        "stillehavet",
+                        "skagen",
+                        "aarhus",
+                        "grønland",
 
-                    "den mexikanske golf", //6
-                    "147",
-                    "canada",
-                    "340",
-                    "gudenåen",
+                        "den mexikanske golf", //6
+                        "147",
+                        "canada",
+                        "340",
+                        "gudenåen"
+                    },
+                    {
+                        "test1",
+                        "test1",
+                        "test1",
+                        "test1",
+                        "test1",
+                        "test1",
+
+                        "test1",
+                        "test1",
+                        "test1",
+                        "test1",
+                        "test1"
+                    },
+                    {
+                        "test2",
+                        "test2",
+                        "test2",
+                        "test2",
+                        "test2",
+                        "test2",
+
+                        "test2",
+                        "test2",
+                        "test2",
+                        "test2",
+                        "test2"
+                    }
                 };
 
                 string korrekt = "Korrekt! Din score er: ";
@@ -324,36 +402,36 @@ namespace ProjektBackup
                             //Console.WriteLine(Globals.quizMemory[1].ToString() + Globals.quizMemory[2].ToString() + Globals.quizMemory[3].ToString() + Globals.quizMemory[4].ToString() + Globals.quizMemory[5].ToString() + Globals.quizMemory[6].ToString() + Globals.quizMemory[7].ToString() + Globals.quizMemory[8].ToString() + Globals.quizMemory[9].ToString() + Globals.quizMemory[10].ToString());
 
                             Thread.Sleep(1); //Ét milllisekund delay for hvert gang den skifter
-                            QuizTimeGeoNem();
+                            QuizTimeGeo(grad);
                         }
                     }
                 }
 
-                string sporgsGeoNemNum = string.Format("Spørgsmål " + (Globals.sporgsNum + 1) + ": " + sporgsGeoNem[Globals.rNum]);
+                string sporgsGeoNum = string.Format("Spørgsmål " + (Globals.sporgsNum + 1) + ": " + sporgsGeo[grad, Globals.rNum]);
                 Console.Clear();
 
-                foreach (char c in sporgsGeoNemNum)
+                foreach (char c in sporgsGeoNum)
                 {
                     Console.Write(c);
                     Thread.Sleep(charDelay);
                 }
 
-                if(Globals.rNum == 6 || Globals.rNum == 7 || Globals.rNum == 8 || Globals.rNum == 9 || Globals.rNum == 10)
+                if (Globals.rNum == 6 || Globals.rNum == 7 || Globals.rNum == 8 || Globals.rNum == 9 || Globals.rNum == 10)
                 {
                     Console.WriteLine("");
-                    foreach ( char c in eksGeoNem[Globals.rNum-6,0] )
+                    foreach (char c in eksGeo[grad, Globals.rNum - 6, 0])
                     {
                         Console.Write(c);
                         Thread.Sleep(charDelay);
                     }
                     Console.WriteLine("");
-                    foreach (char c in eksGeoNem[Globals.rNum-6, 1])
+                    foreach (char c in eksGeo[grad, Globals.rNum - 6, 1])
                     {
                         Console.Write(c);
                         Thread.Sleep(charDelay);
                     }
                     Console.WriteLine("");
-                    foreach (char c in eksGeoNem[Globals.rNum-6, 2])
+                    foreach (char c in eksGeo[grad, Globals.rNum - 6, 2])
                     {
                         Console.Write(c);
                         Thread.Sleep(charDelay);
@@ -366,11 +444,11 @@ namespace ProjektBackup
 
                 geoSvaretNem = geoSvaretNem.ToLower();
 
-                if (geoSvaretNem == svarGeoNem[Globals.rNum])
+                if (geoSvaretNem == svarGeo[grad, Globals.rNum])
                 {
                     Globals.score++;
                     Globals.sporgsNum++;
-                    if(Globals.sporgsNum < 9) Globals.quizMemory[Globals.sporgsNum] = Globals.rNum;
+                    if (Globals.sporgsNum < 9) Globals.quizMemory[Globals.sporgsNum] = Globals.rNum;
                     string korrektSvar = string.Format(korrekt + Globals.score);
 
                     foreach (char c in korrektSvar)
@@ -402,9 +480,8 @@ namespace ProjektBackup
                 }
                 Thread.Sleep(delay * 2);
                 Console.Clear();
-                QuizTimeGeoNem();
+                QuizTimeGeo(grad);
             }
-            
 
         }
 
@@ -414,7 +491,7 @@ namespace ProjektBackup
             //Bruges til at lave et tilfældigt nummer
             Random rnd = new Random();
             //Next bruges til at komme med et tilfældigt nummber fra min til maks
-            return rnd.Next(min,max);
+            return rnd.Next(min, max);
         }
     }
 }
