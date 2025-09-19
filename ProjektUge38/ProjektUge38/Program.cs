@@ -146,9 +146,6 @@ namespace ProjektBackup
                 }
             }
 
-            //<<<<<<< HEAD
-            //=======
-
             ///////////////////////// //Programmeret af Aksel lykkegaard
             ////////Geografi///////// //Semi text-adventure uden grafiske visninger men med sværhedsgrader,
             ///////////////////////// //points or tilfældige spørgsmål
@@ -275,42 +272,43 @@ namespace ProjektBackup
                         "I Hvilken by ligger Danmarks højeste hus?",
                         "Hvad hedder Danmarks største ø?",
 
-                        "Hvad hedder det store havområde imellem Nord og Sydamerika?", //Amerikanske golf, Mexikanske golf, Atlanterhavet
-                        "Hvor høj er himmelbjerget i meter?",//Nævn tre eksempler 147 162 173
-                        "Hvilket land ligger Vancouver i?", //Canada, USA, Grønland
-                        "Hvor mange indbyggere er der i USA i millioner?", //315 340 356
-                        "Hvad hedder Danmarks længste flod/vandløb?", //Gudenåen, Limfjorden, /Storå
+                        "Hvad hedder det store havområde imellem Nord og Sydamerika?",
+                        "Hvor høj er himmelbjerget i meter?",
+                        "Hvilket land ligger Vancouver i?",
+                        "Hvor mange indbyggere er der i USA i millioner?",
+                        "Hvad hedder Danmarks længste flod/vandløb?",
                     },
                     {
-                        "test1",
-                        "test1",
-                        "test1",
-                        "test1",
-                        "test1",
-                        "test1",
+                        "Hvilken dansk ø er den næststørste efter Sjælland?",
+                        "Hvad hedder den største sø i Danmark?",
+                        "Hvad er Danmarks længste fjord?",
+                        "Hvilken ø er kendt for sin runde kirker og klippeformationer og ligger længst ud mod vest?",
+                        "Hvad kalder man havstrømmen, som påvirker Danmarks klima?",
+                        "Hvilket sprog taler Færøerne?",
 
-                        "test1",
-                        "test1",
-                        "test1",
-                        "test1",
-                        "test1"
+                        "Hvilket land er kendt som \"Solens rige\"?",
+                        "Hvilket er verdens længste flod?",
+                        "Hvilket kontinent har flest lande?",
+                        "Hvilket land har flest øer?",
+                        "Hvad er hovedstaden i Brasilien?"
                     },
                     {
-                        "test2",
-                        "test2",
-                        "test2",
-                        "test2",
-                        "test2",
-                        "test2",
+                        "Hvad er Danmarks højeste naturlige punkt?",
+                        "Hvad hedder den største ø, der ikke er forbundet med bro eller dæmning?",
+                        "Hvad hedder Danmarks øgruppe, som ligger mest mod øst?",
+                        "Hvilken dansk ø har flest vindmøller?",
+                        "Hvilken dansk region har den højeste gennemsnitlige årlige nedbør?",
+                        "Hvad hedder hovedstaden på Færøerne?",
 
-                        "test2",
-                        "test2",
-                        "test2",
-                        "test2",
-                        "test2"
+                        "Hvad hedder verdens største ørken?",
+                        "Hvilket land har flest tidszoner?",
+                        "Hvilket land har flest aktive vulkaner?",
+                        "Hvilket hav grænser op til flest kontinenter?",
+                        "Hvilket land har flest søer?"
                     }
                 };
 
+                //Multiple choice
                 string[,,] eksGeo =
                 {
                     {
@@ -321,21 +319,22 @@ namespace ProjektBackup
                         {"1. Gudenåen","2. Limfjorden","3. Storå"}
                     },
                     {
-                        {"1. Den Amerikanske Golf","2. Den Mexikanske Golf","3. Atlanterhavet"},
-                        {"1. 147","2. 162","3. 173"},
-                        {"1. Canada","2. USA","3. Grønland"},
-                        {"1. 315","2. 340","3. 372"},
-                        {"1. Gudenåen","2. Limfjorden","3. Storå"},
+                        {"1. Thailand","2. Japan","3. Egypten"},
+                        {"1. Amazonas","2. Nilen","3. Yangtze"},
+                        {"1. Asien","2. Afrika","3. Europa"},
+                        {"1. Indonesien","2. Filippinerne","3. Sverige"},
+                        {"1. Rio de Janeiro","2. Sao Paulo","3. Brasilia"},
                     },
                     {
-                        {"1. Den Amerikanske Golf","2. Den Mexikanske Golf","3. Atlanterhavet"},
-                        {"1. 147","2. 162","3. 173"},
-                        {"1. Canada","2. USA","3. Grønland"},
-                        {"1. 315","2. 340","3. 372"},
-                        {"1. Gudenåen","2. Limfjorden","3. Storå"},
+                        {"1. Sahara","2. Gobi","3. Antarktis"},
+                        {"1. USA","2. Rusland","3. Frankrig"},
+                        {"1. Indonesien","2. Japan","3. Italien"},
+                        {"1. Atlanterhavet","2. Stillehavet","3. Det Indiske Ocean"},
+                        {"1. Canada","2. Finland","3. Rusland"},
                     }
                 };
 
+                //Svar
                 string[,] svarGeo =
                 {
                     {
@@ -353,32 +352,32 @@ namespace ProjektBackup
                         "gudenåen"
                     },
                     {
-                        "test1",
-                        "test1",
-                        "test1",
-                        "test1",
-                        "test1",
-                        "test1",
+                        "fyn",
+                        "arresø",
+                        "limfjorden",
+                        "bornholm",
+                        "golfstrømmen",
+                        "færøsk",
 
-                        "test1",
-                        "test1",
-                        "test1",
-                        "test1",
-                        "test1"
+                        "japan",
+                        "amazonas",
+                        "afrika",
+                        "sverige",
+                        "brasilia"
                     },
                     {
-                        "test2",
-                        "test2",
-                        "test2",
-                        "test2",
-                        "test2",
-                        "test2",
+                        "møllehøj",
+                        "langeland",
+                        "ertholmene",
+                        "mors",
+                        "sydvestjylland",
+                        "torshavn",
 
-                        "test2",
-                        "test2",
-                        "test2",
-                        "test2",
-                        "test2"
+                        "antarktis",
+                        "frankrig",
+                        "indonesien",
+                        "atlanterhavet",
+                        "canada"
                     }
                 };
 
@@ -395,18 +394,13 @@ namespace ProjektBackup
                         //Hvis de er identiske... genstarter quizzen og prøver indtil der er et ledigt tal
                         if (Globals.rNum == Globals.quizMemory[i]) //...men er det lovligt!?
                         {
-                            //Test funktioner
-                            //Console.WriteLine(Globals.rNum.ToString());
-                            //Console.WriteLine(Globals.quizMemory[i].ToString());
-                            //Console.WriteLine(Globals.sporgsNum.ToString());
-                            //Console.WriteLine(Globals.quizMemory[1].ToString() + Globals.quizMemory[2].ToString() + Globals.quizMemory[3].ToString() + Globals.quizMemory[4].ToString() + Globals.quizMemory[5].ToString() + Globals.quizMemory[6].ToString() + Globals.quizMemory[7].ToString() + Globals.quizMemory[8].ToString() + Globals.quizMemory[9].ToString() + Globals.quizMemory[10].ToString());
-
                             Thread.Sleep(1); //Ét milllisekund delay for hvert gang den skifter
                             QuizTimeGeo(grad);
                         }
                     }
                 }
 
+                //Spørgsmålet skrives ned med nummer og spørgsmål
                 string sporgsGeoNum = string.Format("Spørgsmål " + (Globals.sporgsNum + 1) + ": " + sporgsGeo[grad, Globals.rNum]);
                 Console.Clear();
 
@@ -416,6 +410,7 @@ namespace ProjektBackup
                     Thread.Sleep(charDelay);
                 }
 
+                //Hvis et multiple choice spørgsmål er valgt, skriver der nye linjer
                 if (Globals.rNum == 6 || Globals.rNum == 7 || Globals.rNum == 8 || Globals.rNum == 9 || Globals.rNum == 10)
                 {
                     Console.WriteLine("");
@@ -440,17 +435,21 @@ namespace ProjektBackup
 
                 Console.WriteLine("");
                 Console.Write("Svar: ");
-                string geoSvaretNem = Console.ReadLine();
+                string geoSvaret = Console.ReadLine();
 
-                geoSvaretNem = geoSvaretNem.ToLower();
+                //Tjekker uppercase og sætter dem til lower case
+                geoSvaret = geoSvaret.ToLower();
 
-                if (geoSvaretNem == svarGeo[grad, Globals.rNum])
+                //Hvis svaret er rigtigt, inkrementerer spørgsmål og score
+                if (geoSvaret == svarGeo[grad, Globals.rNum])
                 {
-                    Globals.score++;
-                    Globals.sporgsNum++;
-                    if (Globals.sporgsNum < 9) Globals.quizMemory[Globals.sporgsNum] = Globals.rNum;
-                    string korrektSvar = string.Format(korrekt + Globals.score);
+                    Globals.score++; //Plus score
+                    Globals.sporgsNum++; //Plus spørgsmålsnummer
+                    //Husker på, at spørgsmålet er svaret
+                    if (Globals.sporgsNum <= 9) Globals.quizMemory[Globals.sporgsNum] = Globals.rNum;
 
+                    //Skriver at det er korrekt + score
+                    string korrektSvar = string.Format(korrekt + Globals.score);
                     foreach (char c in korrektSvar)
                     {
                         Console.Write(c);
@@ -458,6 +457,7 @@ namespace ProjektBackup
                     }
 
                 }
+                //Hvis man svarer forkert, taber man
                 else
                 {
 
@@ -485,7 +485,7 @@ namespace ProjektBackup
 
         }
 
-        // Returns et tilfældigt nummmer imellem min og max
+        //Returns et tilfældigt nummmer mellem min og max
         static int RandomNum(int min, int max)
         {
             //Bruges til at lave et tilfældigt nummer
