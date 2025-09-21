@@ -27,9 +27,11 @@ namespace ProjektBackup
             //Hvor mange spørgsmål er gået igennem
             public static int sporgsNum = 0;
             //Hvis forkert svar
-            public static int forkert = 0;
+            public static bool forkert = false;
             //Reserveret for tilfældigt nummer
             public static int rNum = 0;
+            //Antal forsøg
+            public static int forsøg = 3;
             //Maks stillet spørgsmål, skal incrementers hvis flere skal vises
             public const int geoNum = 10;
         }
@@ -160,8 +162,9 @@ namespace ProjektBackup
                 Globals.quizMemory = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
                 Globals.score = 0;
                 Globals.sporgsNum = 0;
-                Globals.forkert = 0;
+                Globals.forkert = false;
                 Globals.rNum = 0;
+                Globals.forsøg = 3;
 
                 string velkommenGeo1 = "velkommen til geografiquizzen, du kan vælge mellem tre";
                 string velkommenGeo2 = "sværhedsgrader:";
@@ -209,8 +212,9 @@ namespace ProjektBackup
 
             void VisReglerGeo()
             {
+
                 string regel1 = "1. Hvert spil giver dig 10 spørgsmål, hvor du skal svare med navn og stavelse";
-                string regel2 = "2. Du vinder hvis du svarer alle spørgsmål, men taber hvis du svarer forkert én gang";
+                string regel2 = "2. Du vinder hvis du svarer alle spørgsmål, men taber hvis du svarer forkert tre gange";
                 string regel3 = "3. Spørgsmålene er opstillet med en tilfældig rækkefølge";
                 string regel4 = "Tryk på en tast for at gå tilbage...";
 
@@ -246,6 +250,8 @@ namespace ProjektBackup
 
             void QuizTimeGeo(int grad)
             {
+                int msecs = 0;
+
                 //Hvis svaret spørgsmål er det samme, som maks har du vundet
                 if (Globals.sporgsNum == Globals.geoNum)
                 {
@@ -384,6 +390,7 @@ namespace ProjektBackup
                 string korrekt = "Korrekt! Din score er: ";
                 string forkert1 = "Forkert! Bedre held næste gang!";
 
+                /*
                 Globals.rNum = RandomNum(0, Globals.geoNum + 1); //se funktionen længere nede
 
                 if (Globals.sporgsNum > 0) //Køres kun hvis man har svaret rigtigt én gang
@@ -398,6 +405,24 @@ namespace ProjektBackup
                             QuizTimeGeo(grad);
                         }
                     }
+                }
+                */
+
+                //Måske er det her lidt bedre...
+                while(Globals.sporgsNum > 0)
+                {
+                    bool tjek2 = true;
+                    Globals.rNum = RandomNum(0, Globals.geoNum + 1);
+
+                    for (int i = 0; i < Globals.geoNum; i++)
+                    {
+                        if (Globals.rNum == Globals.quizMemory[i]) tjek2 = false;
+                    }
+
+                    if (tjek2) break;
+                    if (msecs > 5000) System.Environment.Exit(0); //Hvis løkken har gået igennem over 5000 gange slutter programmet
+                    msecs++;
+                    Thread.Sleep(1);
                 }
 
                 //Spørgsmålet skrives ned med nummer og spørgsmål
@@ -433,15 +458,33 @@ namespace ProjektBackup
                     }
                 }
 
+                /*
                 Console.WriteLine("");
                 Console.Write("Svar: ");
                 string geoSvaret = Console.ReadLine();
 
                 //Tjekker uppercase og sætter dem til lower case
                 geoSvaret = geoSvaret.ToLower();
+                */
+
+                //Et loop der tjekker om svaret er rigtigt, og hvis ikke mister du et forsøg
+                while(Globals.forsøg > 0)
+                {
+                    Console.WriteLine("");
+                    Console.Write("Svar: ");
+                    string geoSvaret = Console.ReadLine();
+                    geoSvaret = geoSvaret.ToLower();
+                    if (geoSvaret == svarGeo[grad, Globals.rNum]) break;
+                    else
+                    {
+                        Globals.forsøg--;
+                        if (Globals.forsøg <= 0) Globals.forkert = true;
+                        else Console.WriteLine("Forkert! Prøv igen... du har " + Globals.forsøg + " forsøg tilbage");
+                    }
+                }
 
                 //Hvis svaret er rigtigt, inkrementerer spørgsmål og score
-                if (geoSvaret == svarGeo[grad, Globals.rNum])
+                if (!Globals.forkert)
                 {
                     Globals.score++; //Plus score
                     Globals.sporgsNum++; //Plus spørgsmålsnummer
@@ -473,7 +516,16 @@ namespace ProjektBackup
                         Console.Write(c);
                         Thread.Sleep(charDelay);
                     }
-                    Thread.Sleep(delay * 5);
+                    Console.WriteLine("");
+                    string trykEnTast = string.Format("Tryk en tast for at fortsætte...");
+                    foreach (char c in trykEnTast)
+                    {
+                        Console.Write(c);
+                        Thread.Sleep(charDelay);
+                    }
+
+                    //Thread.Sleep(delay * 5);
+                    Console.ReadKey();
                     Console.Clear();
                     QuizTime();
 
